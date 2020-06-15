@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    /*선언적 함수 vs 익명함수*/
+    
+    function func1(){
+        console.log("func1실행");
+    }
+    
+    function func2(){
+        console.log("func2실행");
+    }
+    
+    var a =func2; //함수를 a변수에 저장
+    a();
+
+    func1();
+    func2();
+
+    var b = function(){
+        console.log("func3실행")
+    }
+
+    b();
+
+    </script>
+</body>
+</html>
