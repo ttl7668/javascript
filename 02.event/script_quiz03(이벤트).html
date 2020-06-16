@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>자바스크립트 카운트</h2>
+    <input type="text" value="0" id="result">
+    <button type="button" id="p" onclick="plus()">+</button>
+    <button type="button" id="m" onclick="minus()">-</button>
+
+    <script>
+        function plus(){
+            var result = parseInt(document.getElementById("result").value);
+            result = result + 1 ;
+            document.getElementById("result").value=result;
+        }
+
+        function minus(){
+            var result = parseInt(document.getElementById("result").value);
+            if(result<=0){
+                alert("음수는 안됨");
+                return ;
+            }
+            result = result - 1;
+            document.getElementById("result").value=result;
+
+        
+        }
+
+    </script>
+</body>
+</html>
