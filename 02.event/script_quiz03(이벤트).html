@@ -8,11 +8,27 @@
 <body>
     <h2>자바스크립트 카운트</h2>
     <input type="text" value="0" id="result">
-    <button type="button" id="p" onclick="plus()">+</button>
-    <button type="button" id="m" onclick="minus()">-</button>
+    <button type="button" onclick="calc(this)">+</button>
+    <button type="button" onclick="calc(this)">-</button>
 
     <script>
-        function plus(){
+
+        function calc(oper){
+
+            var result = document.getElementById("result");// 결과창
+
+            if(oper.innerHTML==="+"){ //플러스버튼
+                result.value++; //증가
+            }else{ //마이너스 버튼
+                if(result.value<=0){
+                    alert("0보다 작을수 없습니다");
+                    return false;
+                }else{
+                    result.value--;
+                }
+            }
+        }
+     /*    function plus(){
             var result = parseInt(document.getElementById("result").value);
             result = result + 1 ;
             document.getElementById("result").value=result;
@@ -28,7 +44,7 @@
             document.getElementById("result").value=result;
 
         
-        }
+        } */
 
     </script>
 </body>
