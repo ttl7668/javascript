@@ -45,14 +45,14 @@
         var dark = document.getElementById("dark");
         var bright = document.getElementById("bright");
         var body = document.querySelector("body");
-        var all = document.querySelectorAll("p, h2, a");
+        var all = document.querySelectorAll("p, h2");
 
         dark.onclick = function() {
             
             body.style.backgroundColor = "black";
             
             for(var i =0;i<all.length;i++){
-                all[i].style.backgroundColor="white";
+                all[i].style.color="white";
             }
  /*            all[0].style.color = "white";
             all[1].style.color = "white";

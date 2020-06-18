@@ -24,6 +24,7 @@
         var pwMsg = document.querySelector(".pwMsg");
 
         id.onchange=function(){
+            console.log(id.value);
             if(id.value.length<4){
                 id.style.borderColor="red";
                 idMsg.innerHTML ="아이디는4글자이상"

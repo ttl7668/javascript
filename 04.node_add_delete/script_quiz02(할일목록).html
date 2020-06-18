@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>할일 목록 만들기</h3>
+
+    <form class="nameform">
+        <h3 class="nameTitle"></h3>
+        <input type="text" placeholder="이름을적으세요">
+        <button type="button">확인</button>
+    </form>
+   
+    <form class="memo">
+        <input type="text" placeholder="할일을적으세요">
+        <button type="button">확인</button>
+    </form>
+
+    <ul class="list">
+
+    </ul>
+
+    <script>
+        //이름 등록 기능
+        var nameform = document.querySelector(".nameform");
+
+        var nameTitle = nameform.querySelector(".nameTitle");
+        var input = nameform.querySelector("input");
+        var button = nameform.querySelector("button");
+
+        button.addEventListener("click",regist);//regist 함수 재활용
+        function regist(){
+            nameTitle.innerHTML = input.value+"님 안녕하세요.";
+            input.style.display = "none";
+            button.style.display ="none";
+        }
+
+
+        //할일 등록 기능
+    
+    </script>
+</body>
+</html>
