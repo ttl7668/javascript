@@ -14,7 +14,7 @@
         <button type="button">확인</button>
     </form>
    
-    <form class="memo">
+    <form class="todoform">
         <input type="text" placeholder="할일을적으세요">
         <button type="button">확인</button>
     </form>
@@ -26,21 +26,109 @@
     <script>
         //이름 등록 기능
         var nameform = document.querySelector(".nameform");
-
         var nameTitle = nameform.querySelector(".nameTitle");
         var input = nameform.querySelector("input");
         var button = nameform.querySelector("button");
 
         button.addEventListener("click",regist);//regist 함수 재활용
+
         function regist(){
             nameTitle.innerHTML = input.value+"님 안녕하세요.";
             input.style.display = "none";
             button.style.display ="none";
+
         }
 
 
         //할일 등록 기능
+        var todoform  = document.querySelector(".todoform");
+        var list = document.querySelector(".list");
+
+        var input = todoform.querySelector("input");
+        var button = todoform.querySelector("button");
+        
+        var count = 0;
+        button.addEventListener("click",handleTodo);
+
+        function handleTodo(){
+
+            createTodo(input.value);//생성메서드호출
+            input.value="";//할일 초기화
+        }
+
+        function createTodo(text){
+            var ul = document.querySelector(".list");
+
+            //버튼생성
+            var btn = document.createElement("button");
+            //이벤트추가
+            btn.addEventListener("click",deleteTodo);
+            btn.innerHTML="X";
+            btn.id = ++count; //아이디 추가
+
+            //이동버튼 생성 후에 eventListener기법으로 up함수,down함수를 연결
+            //버튼생성2
+            var btn2 = document.createElement("button");
+            btn2.addEventListener("click",upTodo);
+            btn2.innerHTML="▲";
+
+            //버튼생성3
+            var btn3 = document.createElement("button");
+            btn3.addEventListener("click",downTodo);
+            btn3.innerHTML="▼";
+
+            //li생성
+            li = document.createElement("li");
+            li.innerHTML = text;
+            
+
+            //버튼추가
+            li.appendChild(btn); //li에 버튼 저장
+            li.appendChild(btn2);
+            li.appendChild(btn3);
+            ul.appendChild(li); //ul에 li를 추가
+            
+        }
+        
     
+        //할일삭제
+        function deleteTodo(){
+          
+            var ul = document.querySelector(".list");
+            ul.removeChild(this.parentElement); 
+            //ul.removeChild(event.target.parentNode);
+        }
+
+        //업
+        function upTodo(){
+            console.log(event.target);
+           var current = event.target.parentElement;
+           var pre = current.previousElementSibling;
+           console.log(current);
+           console.log(pre);
+           if(pre===null) return;
+
+           if(confirm("이동하시겟습니까?")){
+               list.insertBefore(pre,current.nextElementSibling);
+           }else{
+               return;
+           }
+
+
+        }
+
+        function downTodo(){
+            var current = event.target.parentElement;
+            var next = current.nextElementSibling;
+
+            if(next===null) return;
+
+            if(confirm("이동하시겟습니까?")){
+                list.insertBefore(current,next.nextElementSibling);
+            }else{
+                return;
+            }
+        }
     </script>
 </body>
 </html>

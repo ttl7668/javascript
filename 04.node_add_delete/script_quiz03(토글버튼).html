@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {text-align: center;}
+        img {width: 100%; height: 100%;}
+        .box {border:1px solid; overflow: hidden; margin: 0 auto; width: 80%; padding: 5px;}
+        .box .left,.box .right {float: left; width: 50%;box-sizing: border-box; padding: 5px;}
+        .left .inner,.right .inner {border: 1px solid; height: 300px;}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h2>야간모드</h2>
+        <button type="button" id="btn1" class="dark">어둡게보기</button>
+        <button type="button" id="btn2" class="name">이름보기</button>
+        <button type="button" id="btn3" class="write">메모장모드</button>
+      
+        <hr>
+    </header>
+    <section>
+        <div class="box">
+            <div class="left">
+
+                <div class="inner">
+                    <img src="profile.png" id="img">
+                </div>
+              
+            </div>
+            <div class="right">
+                <div class="inner">
+                    <p class="content">
+                        자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var btn3 = document.getElementById("btn3");
+        var body = document.querySelector("body");
+        var all = document.querySelectorAll("p, h2");
+        var p = document.querySelector("p");
+
+        btn1.onclick=function(){
+            
+            if(btn1.className=="dark"){
+                btn1.innerHTML="밝게보기";
+                btn1.className="bright";
+
+                body.style.backgroundColor = "black";
+    
+                for(var i =0;i<all.length;i++){
+                    all[i].style.color="white";
+                }
+         
+            }else if(btn1.className="bright"){
+                btn1.innerHTML="어둡게보기";
+                btn1.className="dark";
+
+                body.style.background ="white";
+
+                for(var i = 0; i<all.length;i++){
+                    all[i].style.color="black";
+                    }
+                }
+            }
+
+        btn2.onclick=function(){
+
+            if(btn2.className=="name"){
+                btn2.innerHTML="내용보기";
+                btn2.className="content";
+
+                p.innerHTML="홍길자";
+                                         
+
+            }else{
+                btn2.innerHTML="이름보기";
+                btn2.className="name";
+
+                p.innerHTML="자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다";
+            }
+            
+        }
+
+        btn3.onclick=function(){
+            //자식태그삭제
+            var inner = document.querySelector(".left>.inner");
+
+            //태그가 지워지면서 index가 당겨져오기 때문에 i의 증가를 없이 0번째만 삭제.
+            for(var i=0;i<inner.children.length;){
+                inner.removeChild(inner.children[i]);//삭제
+            }
+
+            if(btn3.className=="write"){
+
+                var textarea=document.createElement("textarea");
+                var button = document.createElement("button");
+                textarea.style.width="100%";
+                textarea.style.height="100px";
+                textarea.style.boxSizing="border-box";
+                textarea.style.resize="vertical";
+
+                button.innerHTML="등록하기";
+                inner.appendChild(textarea);
+                inner.appendChild(button);
+
+                btn3.innerHTML="사진보기"
+                btn3.className="picture"
+
+            }else{
+                var img = document.createElement("img");
+                img.src="profile.png";
+                inner.appendChild(img);
+
+                btn3.innerHTML="메모보기";
+                btn3.className="write";
+
+            }
+        }
+               
+        
+    </script>
+</body>
+</html>
