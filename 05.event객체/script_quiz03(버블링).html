@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>버블링코드로 변경</h3>
+    <div >
+        <ul class="imglist">
+            <li><img src ="img/1.jpg" alt="1" width="100"></li>
+            <li><img src ="img/2.jpg" alt="2" width="100"></li>
+            <li><img src ="img/3.jpg" alt="3" width="100"></li>
+            <li><img src ="img/4.jpg" alt="4" width="100"></li>
+        </ul>
+    </div>
+    결과
+    <div class="result">
+        <img src ="img/1.jpg" alt="결과" width="300">
+    </div>
+
+    <script>
+        var imglist = document.querySelector(".imglist");
+        var result = document.querySelector(".result img");
+
+        imglist.onclick = function(){
+            console.log(event.target);
+            if(event.target.tagName!=="IMG") return;
+            result.src = event.target.src;
+        }
+    </script>
+
+    <hr>
+
+    <table>
+        <thead>
+            <tr>
+                <td>번호</td>
+                <td>제목</td>
+                <td>내용</td>
+                <td>삭제</td>
+            </tr>
+        </thead>
+        <tbody class=list>
+            <tr>
+                <td>1</td>
+                <td>첫글</td>
+                <td>he</td>
+                <td><button class="del">삭제</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>첫글</td>
+                <td>he</td>
+                <td><button class="del">삭제</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>첫글</td>   
+                <td>he</td>
+                <td><button class="del">삭제</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>첫글</td>
+                <td>he</td>
+                <td><button class="del">삭제</button></td>
+            </tr>
+           
+        </tbody>
+    </table>
+    
+    <script>
+        var list = document.querySelector(".list");
+        list.onclick = function(){
+
+            console.log(event.target.classList.contains("del"))
+
+            if(event.target.classList.contains("del")){
+                event.target.parentElement.parentElement.remove();
+            }
+        }
+    </script>
+</body>
+</html>

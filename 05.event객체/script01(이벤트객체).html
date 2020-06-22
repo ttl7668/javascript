@@ -28,7 +28,7 @@
         //이벤트가 발생했을때 실행되는 함수의 arguments에 event객체를 자동으로 넣어줍니다.
         //하지만, li가 1000000개 라면?? 함수가 100000개 생성된다는 뜻이기 때문에 좋은 코드가 아니다.
         for(var i =0;i<list.length;i++){
-            list[i].onclick=function(){
+            list[i].onclick=function(e){
                 //console.dir(event);
                 //console.dir(event.target);
                 //event.target.style.color="red";
