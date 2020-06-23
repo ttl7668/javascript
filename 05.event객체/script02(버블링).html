@@ -23,6 +23,9 @@
         var result = document.querySelector(".result");
 
         parent.onclick = function(){
+            //버블링을 사용할때 부모를 클릭해도 적용되는 문제를 해결
+            console.log(event.target);//이벤트가 적용된 타겟
+            console.log(event.currentTarget);//실제 이벤트가 걸려잇는 타겟
 
             if(event.target.tagName!=="LI") return;
 
