@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <!--쿠키js-->
+        <script src = "popup.js"></script>
+</head>
+<body>
+    <div>
+        내용...
+    </div>
+    오늘하루 이창을 열지 않기<input type="checkbox" class="check">
+
+    <script>
+        var input = document.querySelector(".check");
+        input.onclick = function(){
+
+            if(input.checked){
+                createCookie("mainPopup","popup"); //쿠키생성 메서드
+                //window.close();
+            }
+        }
+        //쿠키생성함수() 매개변수를 받아서 해당이름으로 1일간 유지되는 쿠키를 생성
+        function createCookie(name,value){
+            var date = new Date();
+            date.setDate(date.getDate()+1);
+
+            var cookie="";
+            cookie+=name+"="+value+";";//키=값; 설정
+            cookie+="expires="+date.toUTCString();
+            document.cookie = cookie;
+
+        }
+    </script>
+    
+</body>
+</html>
