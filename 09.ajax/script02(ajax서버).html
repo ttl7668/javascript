@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        ul,li{list-style: none;}
+        .movieList{overflow: hidden; width:80%; margin:0 auto}
+        .movieList .movie {float: left; width: 33.33%; height: 300px; position: relative;}
+        .movie img {position: absolute;top:0;left: 0;  width: 100px;}
+
+        .movie .inner {padding-left: 110px;}
+        .movie .genres li {display: inline-block;}
+        .movie p{overflow: scroll;height: 100px;}
+    </style>
 </head>
 <body>
     <div>
@@ -26,7 +37,7 @@
     </div>
     <script>
         //ajax연습 사이트 yts.mx/api
-        fetch("https://yts.mx/api/v2/list_movies.json?sort_by=rating").then(function(response){
+        fetch("https://yts.mx/api/v2/list_movies.json?sort_by=year").then(function(response){
             if(response.status !== 200){
                 alert("서버와의 통신에 실패햇습니다")
             }else{
@@ -53,7 +64,10 @@
             tag += '<h3 class="title">'+title+'</h3>'
             tag += '<h3 class="years">'+year+'</h3>'
             tag += '<ul class ="genres">'
-            tag += genres
+                    for (var j of genres){ //for of는 벨류값을 얻어줌.
+                        tag += '<li>'+j+'</li>'
+                    }
+
             tag += '</ul>';
             tag += '<p class="sumary">'+summary+'</p>'
             tag += '</div>';

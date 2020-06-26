@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        #map {
+          height: 50%;
+          width: 50%;
+          margin: 0 auto;
+        }
+      
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      </style>
+</head>
+<body>
+
+    <div id="map"></div>
+    
+
+    <script>
+      var map;
+     
+      function ajax(){
+    
+        var link = `http://openapi.seoul.go.kr:8088/474858485862686336327379437178/JSON/SearchPublicToiletPOIService/1/5/`;
+          fetch(link, {
+
+                method:'get',
+				headers:{
+					'Content-Type': 'application/json' //제이슨형식
+	                //'Content-Type': 'application/x-www-form-urlencoded' //폼형식
+				},
+				body : JSON.stringify()
+                }).then(function(response){
+                
+            if(response.status !== 200){
+                alert("서버와의 통신에 실패햇습니다")
+            }else{
+                return response.json();
+            }
+            }).then(function(jsondata){
+                console.log(jsondata);
+                map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: new google.maps.LatLng(37,127),
+
+            });
+              
+                           
+            var script = document.createElement('script');
+            script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+            document.getElementsByTagName('head')[0].appendChild(script); 
+
+            window.eqfeed_callback = function(results) {
+
+                var data = jsondata.SearchPublicToiletPOIService;
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                
+                    var latLng = new google.maps.LatLng(data[i].lat ,data[i].lng);
+                    var marker = new google.maps.Marker({
+                    position: latLng, 
+                    map: map, 
+                    title:data[i].addr+"\n"+data[i].name+"\n"+
+                            (function(){
+                            if( data[i].remain_stat==="plenty"){
+                                return "100개이상"
+                            } else if(data[i].remain_stat==="some"){
+                                return "30-100개 이하"
+                            } else if(data[i].remain_stat==="few"){
+                                return "30개미만"
+                            }else{
+                                return "재고없음"
+                            }
+                            })()
+                    
+                    });
+                }
+                } 
+
+            });
+
+          }
+
+
+          function coordFail(){
+    
+        }
+
+          function initMap(){
+          navigator.geolocation.getCurrentPosition(ajax,coordFail);
+      }
+
+        
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuV1upL3zg_nRou8SCQ4zL3aGO7gsHFeI&callback=initMap">
+    </script>
+    
+</body>
+</html>
