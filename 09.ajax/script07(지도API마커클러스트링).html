@@ -63,7 +63,7 @@
             document.getElementsByTagName('head')[0].appendChild(script); 
 
             //지도에 좌표를 찍어주는 코드 
-            window.eqfeed_callback = function(results) {
+             window.eqfeed_callback = function(results) {
 
                 var data = jsondata.stores;
                 console.log(data);
@@ -84,11 +84,11 @@
                                }else{
                                  return "재고없음"
                                }
-                            })()
+                            })() 
                       
                     });
                   }
-             } 
+             }  
         })
 
       }//ajax end
